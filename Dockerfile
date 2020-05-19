@@ -1,4 +1,4 @@
-FROM quay.io/yeebase/debian-base:stretch
+FROM t3nde/debian-base:stretch
 
 ENV PHP_VERSION 7.3
 ENV NGINX_VTS_VERSION 0.1.18

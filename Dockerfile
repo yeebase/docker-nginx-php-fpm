@@ -17,8 +17,8 @@ RUN set -x && \
     curl -sL https://nginx.org/keys/nginx_signing.key | apt-key add - && \
     echo "deb https://nginx.org/packages/mainline/debian/ $(lsb_release -sc) nginx" > /etc/apt/sources.list.d/nginx.list && \
     echo "deb-src https://nginx.org/packages/mainline/debian/ $(lsb_release -sc) nginx" >> /etc/apt/sources.list.d/nginx.list && \
-    curl -sL https://s3-eu-west-1.amazonaws.com/qafoo-profiler/packages/EEB5E8F4.gpg | apt-key add - && \
-    echo "deb http://s3-eu-west-1.amazonaws.com/qafoo-profiler/packages debian main" > /etc/apt/sources.list.d/tideways.list && \
+    echo 'deb https://packages.tideways.com/apt-packages debian main' | tee /etc/apt/sources.list.d/tideways.list && \
+    curl -sL https://packages.tideways.com/key.gpg | apt-key add - && \
     clean-install \
       php${PHP_VERSION}-common \
       php${PHP_VERSION}-cli \

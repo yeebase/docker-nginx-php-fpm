@@ -37,8 +37,8 @@ RUN set -x && \
       php${PHP_VERSION}-xmlrpc \
       php${PHP_VERSION}-bcmath \
       php${PHP_VERSION}-zip \
-      php-mongodb \
-      php-redis \
+      php${PHP_VERSION}-mongodb \
+      php${PHP_VERSION}-redis \
       tideways-php \
       tideways-cli && \
     mkdir -p /opt/rebuildnginx && \

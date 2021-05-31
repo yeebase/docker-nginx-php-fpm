@@ -1,5 +1,5 @@
 # Image URL to use all building/pushing image targets
-IMG ?= quay.io/yeebase/nginx-php-fpm:dev
+IMG ?= t3nde/nginx-php-fpm
 
 # Build the docker image
 docker-build:

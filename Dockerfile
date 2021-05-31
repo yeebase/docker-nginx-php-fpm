@@ -1,6 +1,6 @@
-FROM t3nde/debian-base:stretch
+FROM t3nde/debian-base:buster
 
-ENV PHP_VERSION 7.4
+ENV PHP_VERSION 8.0
 ENV NGINX_VTS_VERSION 0.1.18
 
 RUN set -x && \
@@ -17,17 +17,13 @@ RUN set -x && \
     curl -sL https://nginx.org/keys/nginx_signing.key | apt-key add - && \
     echo "deb https://nginx.org/packages/mainline/debian/ $(lsb_release -sc) nginx" > /etc/apt/sources.list.d/nginx.list && \
     echo "deb-src https://nginx.org/packages/mainline/debian/ $(lsb_release -sc) nginx" >> /etc/apt/sources.list.d/nginx.list && \
-    echo 'deb https://packages.tideways.com/apt-packages debian main' | tee /etc/apt/sources.list.d/tideways.list && \
-    curl -sL https://packages.tideways.com/key.gpg | apt-key add - && \
     clean-install \
       php${PHP_VERSION}-common \
       php${PHP_VERSION}-cli \
       php${PHP_VERSION}-fpm \
       php${PHP_VERSION}-curl \
       php${PHP_VERSION}-gd \
-      php${PHP_VERSION}-json \
       php${PHP_VERSION}-mbstring \
-      # php${PHP_VERSION}-mcrypt \ not available for php7.3
       php${PHP_VERSION}-mysql \
       php${PHP_VERSION}-opcache \
       php${PHP_VERSION}-readline \
@@ -38,9 +34,7 @@ RUN set -x && \
       php${PHP_VERSION}-bcmath \
       php${PHP_VERSION}-zip \
       php${PHP_VERSION}-mongodb \
-      php${PHP_VERSION}-redis \
-      tideways-php \
-      tideways-cli && \
+      php${PHP_VERSION}-redis && \
     mkdir -p /opt/rebuildnginx && \
     chmod 0777 /opt/rebuildnginx && \
     cd /opt/rebuildnginx && \
@@ -54,7 +48,7 @@ RUN set -x && \
     cd /opt/rebuildnginx/nginx-${NGINX_VERSION} && \
     dpkg-buildpackage -b && \
     cd /opt/rebuildnginx && \
-    dpkg --install nginx_${NGINX_VERSION}-1~stretch_amd64.deb && \
+    dpkg --install nginx_${NGINX_VERSION}-1~buster_amd64.deb && \
     clean-uninstall \
       curl \
       devscripts \

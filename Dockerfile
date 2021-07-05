@@ -17,6 +17,8 @@ RUN set -x && \
     curl -sL https://nginx.org/keys/nginx_signing.key | apt-key add - && \
     echo "deb https://nginx.org/packages/mainline/debian/ $(lsb_release -sc) nginx" > /etc/apt/sources.list.d/nginx.list && \
     echo "deb-src https://nginx.org/packages/mainline/debian/ $(lsb_release -sc) nginx" >> /etc/apt/sources.list.d/nginx.list && \
+    echo 'deb https://packages.tideways.com/apt-packages debian main' | tee /etc/apt/sources.list.d/tideways.list && \
+    curl -sL https://packages.tideways.com/key.gpg | apt-key add - && \
     clean-install \
       php${PHP_VERSION}-common \
       php${PHP_VERSION}-cli \
@@ -36,7 +38,9 @@ RUN set -x && \
       php${PHP_VERSION}-bcmath \
       php${PHP_VERSION}-zip \
       php${PHP_VERSION}-mongodb \
-      php${PHP_VERSION}-redis && \
+      php${PHP_VERSION}-redis \
+      tideways-php \
+      tideways-cli && \
     mkdir -p /opt/rebuildnginx && \
     chmod 0777 /opt/rebuildnginx && \
     cd /opt/rebuildnginx && \

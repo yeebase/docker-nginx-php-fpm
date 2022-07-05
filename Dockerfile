@@ -1,4 +1,4 @@
-FROM t3nde/debian-base:buster
+FROM t3nde/debian-base:bullseye
 
 ENV PHP_VERSION 8.0
 ENV NGINX_VTS_VERSION 0.1.18
@@ -48,7 +48,7 @@ RUN set -x && \
     cd /opt/rebuildnginx/nginx-${NGINX_VERSION} && \
     dpkg-buildpackage -b && \
     cd /opt/rebuildnginx && \
-    dpkg --install nginx_${NGINX_VERSION}-1~buster_amd64.deb && \
+    dpkg --install nginx_${NGINX_VERSION}-1~bullseye_amd64.deb && \
     clean-uninstall \
       curl \
       devscripts \

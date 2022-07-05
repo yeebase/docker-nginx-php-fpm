@@ -54,7 +54,7 @@ RUN set -x && \
     cd /opt/rebuildnginx/nginx-${NGINX_VERSION} && \
     dpkg-buildpackage -b && \
     cd /opt/rebuildnginx && \
-    dpkg --install nginx_${NGINX_VERSION}-1~stretch_amd64.deb && \
+    dpkg --install nginx_${NGINX_VERSION}-1~bullseye_amd64.deb && \
     clean-uninstall \
       curl \
       devscripts \

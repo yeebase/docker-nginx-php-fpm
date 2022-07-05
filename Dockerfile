@@ -1,4 +1,4 @@
-FROM t3nde/debian-base:stretch
+FROM t3nde/debian-base:bullseye
 
 ENV PHP_VERSION 7.2
 ENV NGINX_VTS_VERSION 0.1.18

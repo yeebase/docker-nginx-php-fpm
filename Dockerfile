@@ -39,7 +39,8 @@ RUN set -x && \
   nginx-core && \
   mkdir -p /run/php /var/www /var/log/nginx/ && \
   ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm && \
-  rm -r /opt
+  rm -r /opt && \
+  mv /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf /etc/php/${PHP_VERSION}/fpm/pool.d/10-www.conf
   # rm /etc/nginx/conf.d/default.conf
 
 COPY conf/nginx /etc/nginx

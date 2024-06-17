@@ -12,8 +12,7 @@ RUN set -x && \
       equivs \
       gnupg \
       lsb-release \
-      ca-certificates \
-      tee && \
+      ca-certificates && \
     curl -sL https://packages.sury.org/php/apt.gpg | apt-key add - && \
     echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list && \
     curl -sSLo /tmp/debsuryorg-archive-keyring.deb https://packages.sury.org/debsuryorg-archive-keyring.deb && \

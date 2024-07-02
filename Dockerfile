@@ -43,6 +43,7 @@ RUN set -x && \
       php${PHP_VERSION}-zip \
       php${PHP_VERSION}-mongodb \
       php${PHP_VERSION}-redis \
+      php${PHP_VERSION}-excimer \
       tideways-php \
       tideways-cli && \
     mkdir -p /opt/rebuildnginx && \
@@ -58,7 +59,7 @@ RUN set -x && \
     cd /opt/rebuildnginx/nginx-${NGINX_VERSION} && \
     dpkg-buildpackage -b && \
     cd /opt/rebuildnginx && \
-    dpkg --install nginx_${NGINX_VERSION}-1~bullseye_amd64.deb && \
+    dpkg --install nginx_${NGINX_VERSION}-2~bullseye_amd64.deb && \
     clean-uninstall \
       curl \
       devscripts \

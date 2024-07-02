@@ -46,6 +46,7 @@ RUN set -x && \
       php${PHP_VERSION}-zip \
       php${PHP_VERSION}-mongodb \
       php${PHP_VERSION}-redis \
+      php${PHP_VERSION}-excimer \
       tideways-php \
       tideways-cli && \
     mkdir -p /opt/rebuildnginx && \

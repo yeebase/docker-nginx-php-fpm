@@ -1,14 +1,14 @@
 FROM t3nde/debian-base:bullseye
 
-ENV PHP_VERSION 8.1
+ENV PHP_VERSION=8.1
 
 RUN set -x && \
   clean-install \
-    apt-transport-https \
-    curl \
-    gnupg \
-    lsb-release \
-    ca-certificates && \
+  apt-transport-https \
+  curl \
+  gnupg \
+  lsb-release \
+  ca-certificates && \
   curl -sL https://packages.sury.org/php/apt.gpg | apt-key add - && \
   echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list && \
   curl -sSLo /tmp/debsuryorg-archive-keyring.deb https://packages.sury.org/debsuryorg-archive-keyring.deb && \
@@ -17,8 +17,6 @@ RUN set -x && \
   curl -sL https://nginx.org/keys/nginx_signing.key | apt-key add - && \
   echo "deb https://nginx.org/packages/mainline/debian/ $(lsb_release -sc) nginx" > /etc/apt/sources.list.d/nginx.list && \
   echo "deb-src https://nginx.org/packages/mainline/debian/ $(lsb_release -sc) nginx" >> /etc/apt/sources.list.d/nginx.list && \
-  echo 'deb https://packages.tideways.com/apt-packages-main any-version main' >> /etc/apt/sources.list.d/tideways.list && \
-  curl -sL https://packages.tideways.com/key.gpg | apt-key add - && \
   clean-install \
   php${PHP_VERSION}-common \
   php${PHP_VERSION}-cli \
@@ -38,14 +36,12 @@ RUN set -x && \
   php${PHP_VERSION}-mongodb \
   php${PHP_VERSION}-redis && \
   clean-install \
-  tideways-php \
-  tideways-cli \
   nginx-core && \
   mkdir -p /run/php /var/www /var/log/nginx/ && \
   ln -sf /usr/sbin/php-fpm${PHP_VERSION} /usr/sbin/php-fpm && \
   rm -r /opt && \
   mv /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf /etc/php/${PHP_VERSION}/fpm/pool.d/10-www.conf
-  # rm /etc/nginx/conf.d/default.conf
+# rm /etc/nginx/conf.d/default.conf
 
 COPY conf/nginx /etc/nginx
 COPY conf/php /etc/php/${PHP_VERSION}
